@@ -15,21 +15,31 @@ function App(): React.JSX.Element {
     <SafeAreaView>
       <Launchlib>
         <LineChart
-          catergoricalAxis={['Jan', 'Feb', 'March','Apr','June','July']}
-          numericalAxes={{
-            'Series 1': {
-              data: [10, 15, 20, 25, 12, 13, 14],
+          catergoricalAxis={[
+            'Jan',
+            'Feb',
+            'March',
+            'Apr',
+            'June',
+            'July',
+            'Aug',
+            'Sept',
+          ]}
+          numericalAxes={[
+            {
+              data: [1, 9, 1.5, 1, 4.5, 2, 1, 5],
               strokeColor: 'red',
               strokeWidth: 2,
             },
-            'Series 2': {
-              data: [20, 15, 30, 40, 22, 13, 14],
-              strokeWidth: 2,
+            {
+              data: [],
               strokeColor: 'blue',
+              strokeWidth: 2,
             },
-          }}
+          ]}
+          xUnit={120}
           chartHeight={500}
-          minChartWidth={200}
+          showToolTip={true}
         />
       </Launchlib>
     </SafeAreaView>
