@@ -4,7 +4,7 @@ import Svg, {G, Line} from 'react-native-svg';
 import NumericalAxis from './components/NumericalAxis';
 import {DataLine} from './components/Dataline';
 import {Labels} from './components/Labels';
-import CategoricalAxis from './components/CategoricalAxis';
+import CategoricalAxis, {TiltAngle} from './components/CategoricalAxis';
 import {HorizontalDivisions, VerticalDivisions} from './components/Divisions';
 
 export interface NumericalAxisType {
@@ -20,6 +20,8 @@ interface LineChartProps {
   modifyToolTipLabel?: (x: string, y: number) => string;
   xUnit?: number;
   showToolTip?: boolean;
+  categoricalAxisHeight?: number;
+  categoricalLabelTilt?: TiltAngle;
 }
 
 const LineChart: React.FC<LineChartProps> = ({
@@ -30,6 +32,8 @@ const LineChart: React.FC<LineChartProps> = ({
   modifyToolTipLabel = (x, y) => `(${x},${y})`,
   xUnit = 70,
   showToolTip = false,
+  categoricalAxisHeight,
+  categoricalLabelTilt,
 }) => {
   const chartWidth = Math.max(catergoricalAxis.length * xUnit, minChartWidth);
   const totalYDivisions = Math.floor(chartHeight / 50);
@@ -98,7 +102,12 @@ const LineChart: React.FC<LineChartProps> = ({
                 })}
             </G>
           </Svg>
-          <CategoricalAxis categoricalAxis={catergoricalAxis} xUnit={xUnit} />
+          <CategoricalAxis
+            height={categoricalAxisHeight}
+            categoricalAxis={catergoricalAxis}
+            xUnit={xUnit}
+            tiltAngle={categoricalLabelTilt}
+          />
         </View>
       </ScrollView>
     </View>
