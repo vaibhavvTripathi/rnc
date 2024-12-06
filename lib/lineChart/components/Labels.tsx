@@ -9,6 +9,7 @@ interface LabelsProps {
   maxYValue: number;
   modifyToolTipLabel: (x: string, y: number) => string;
   categoricalAxis: Array<string>;
+  toolTipColor?: string;
 }
 export const Labels = ({
   numericalAxisValues,
@@ -17,6 +18,7 @@ export const Labels = ({
   chartHeight,
   categoricalAxis,
   modifyToolTipLabel,
+  toolTipColor,
 }: LabelsProps) => {
   const points = numericalAxisValues.data.map((d, index) => {
     return {
@@ -38,8 +40,8 @@ export const Labels = ({
               point.numericalValue,
             )}
             key={index}
-            circleColor={numericalAxisValues.strokeColor}
-            textColor={numericalAxisValues.strokeColor}
+            circleColor={toolTipColor ?? numericalAxisValues.strokeColor}
+            textColor={toolTipColor ?? numericalAxisValues.strokeColor}
           />
         );
       })}

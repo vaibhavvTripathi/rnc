@@ -1,17 +1,20 @@
 import React from 'react';
-import Svg, {Line, Text} from 'react-native-svg';
+import Svg, {Text} from 'react-native-svg';
 
 interface NumericalAxisProps {
   totalDivisions: number;
   maxHeight: number;
   chartHeight: number;
+  labelColor?: string;
+  fontSize?: number;
 }
-
 
 const NumericalAxis: React.FC<NumericalAxisProps> = ({
   totalDivisions,
   maxHeight,
   chartHeight,
+  labelColor,
+  fontSize,
 }) => {
   const unit = maxHeight / Math.max(totalDivisions, 1);
 
@@ -29,16 +32,13 @@ const NumericalAxis: React.FC<NumericalAxisProps> = ({
   };
   return (
     <Svg width={50} height={chartHeight}>
-      <Line
-        x1={50} // Adjust position to the far right of the Y axis
-        y1={0}
-        x2={50}
-        y2={chartHeight}
-        stroke="black" // Line color
-        strokeWidth={1} // Line thickness
-      />
       {yDivisions.map((value, index) => (
-        <Text x={12} y={getYValue(index)} key={index}>
+        <Text
+          x={12}
+          y={getYValue(index)}
+          key={index}
+          fill={labelColor ?? 'grey'}
+          fontSize={fontSize ?? 12}>
           {value.toFixed(2)}
         </Text>
       ))}

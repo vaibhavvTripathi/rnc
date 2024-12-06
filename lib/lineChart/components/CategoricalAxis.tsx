@@ -24,22 +24,28 @@ type CategoricalAxisProps = {
   xUnit: number;
   height?: number;
   tiltAngle?: TiltAngle;
+  labelColor?: string;
+  fontSize?: number;
 };
 const CategoricalAxis = ({
   categoricalAxis,
   xUnit,
   tiltAngle = 0,
-  height = 50,
+  height = 60,
+  labelColor,
+  fontSize,
 }: CategoricalAxisProps) => {
   return (
     <Svg height={height}>
       {categoricalAxis.map((c, index) => {
         return (
           <Text
-            y={10}
+            y={(3 * height) / 4}
             transform={`rotate(${tiltAngle}, ${index * xUnit}, 10)`}
             x={index * xUnit - (index !== 0 ? 5 : 0)}
-            key={index}>
+            key={index}
+            fill={labelColor ?? 'grey'}
+            fontSize={fontSize ?? 14}>
             {c}
           </Text>
         );

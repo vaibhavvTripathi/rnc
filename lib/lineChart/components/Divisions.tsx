@@ -33,10 +33,16 @@ export const HorizontalDivisions = ({
   totalYDivisions,
   chartHeight,
   chartWidth,
+  dashedLineGap,
+  dashedLineWidth,
+  dashedLineColor,
 }: {
   totalYDivisions: number;
   chartHeight: number;
   chartWidth: number;
+  dashedLineWidth?: number;
+  dashedLineGap?: number;
+  dashedLineColor?: string;
 }) => {
   return (
     <G>
@@ -49,8 +55,9 @@ export const HorizontalDivisions = ({
             y1={chartHeight * (index / Math.max(totalYDivisions, 1))}
             x2={chartWidth}
             y2={chartHeight * (index / Math.max(totalYDivisions, 1))}
-            stroke="#E0E0E0"
+            stroke={dashedLineColor ?? '#E0E0E0'}
             strokeWidth="1"
+            strokeDasharray={`${dashedLineWidth ?? 10} ${dashedLineGap ?? 5}`}
           />
         ),
       )}
