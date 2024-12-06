@@ -13,10 +13,9 @@ const Launchlib = ({children}: {children: ReactNode}) => {
   return (
     <ScrollView style={{padding: 4}}>
       <Text style={{fontSize: 32, marginHorizontal: 'auto', marginTop: 20}}>
-        React Native Charts
+        rn-charts-lite
       </Text>
-      <DropDown />
-      <View style={{paddingBottom:100}}>{children}</View>
+      <View style={{paddingBottom: 100}}>{children}</View>
     </ScrollView>
   );
 };
